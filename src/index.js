@@ -1,6 +1,10 @@
 import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import 'notiflix/dist/notiflix-3.2.6.min.css';
+import Notiflix from 'notiflix';
+
+
 
 const apiKey = '40538294-532b9d41dacfc837c400cb4b1';
 const perPage = 40;
@@ -53,7 +57,8 @@ async function loadImages() {
     const totalHits = response.data.totalHits;
 
     if (images.length === 0) {
-      alert('No images found for your search.');
+      Notiflix.Notify.failure('No images found for your search');
+     
     } else {
       displayImages(images);
       if (!hasShownTotalHitsMessage) {
@@ -86,7 +91,7 @@ function showTotalHitsMessage(totalHits) {
 
 
 function showTotalHitsMessage(totalHits) {
-  alert(`Hooray! We found ${totalHits} images.`);
+  Notiflix.Notify.warning(`Hooray! We found ${totalHits} images`);
 }
 
 function displayImages(images) {
